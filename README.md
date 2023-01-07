@@ -1,2 +1,2 @@
 # PasswordCracker
-# By Sage + Aidan
+By Sage + Aidan
