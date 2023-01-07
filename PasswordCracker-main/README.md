@@ -1,2 +1,0 @@
-# PasswordCracker
-By Sage + Aidan
