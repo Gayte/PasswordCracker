@@ -15,13 +15,13 @@ def DoExit():
     if Exit.upper() == "Y":
         sys.exit()
     elif Exit.upper() == "N":
-        Cracker()
+        PwCrack()
     else:
         print("Enter either Y or N for yes or no.")
         DoExit()
 
 
-def Cracker():
+def PwCrack():
     found = False
     valid = False
     bad_character = False
@@ -132,4 +132,4 @@ def Cracker():
     DoExit()
 
 
-Cracker()
+PwCrack()
