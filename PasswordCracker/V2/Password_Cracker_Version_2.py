@@ -2,12 +2,17 @@
 import random
 import time
 import sys
-
+import pickle
 # Resetting variables and list of letters.
 letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
            'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
+#Unhash to reset averages
+
+times = {1:[],2:[],3:[],4:[],5:[]}
+with open("avgs.pkl", "wb") as data:
+pickle.dump(times, data)
 
 # Defining exit function
 def DoExit():
@@ -130,6 +135,43 @@ def PwCrack():
     print("Your time is: " + str(end_time - start_time) + " seconds")
     time.sleep(1)
     DoExit()
+   
+    #Saving times
+
+with open("avgs.pkl", "rb") as olddata:
+    olddatadict = pickle.load(olddata)
+    x = olddatadict[len(password)]
+    x.append(endtime - starttime)
+    olddatadict[len(password)] = x
+
+
+
+with open("avgs.pkl", "wb") as olddatatowrite:
+    pickle.dump(olddatadict, olddatatowrite)
+
+
+
+with open("avgs.pkl", "rb") as data:
+    avgdict = pickle.load(data)
+
+
+
+def mean(lst):
+    total = 0
+    for i in lst:
+        total = total + i
+    average = total/len(lst)
+
+    return average
+
+
+
+#Averaging and displaying average times.
+
+if len(password) == 1:
+    print("Average time (1 letter): " + str(mean(avgdict[len(password)])) + " seconds")
+else:
+    print("Average time  (" + str(len(password)) +  " letters): "  + str(mean(avgdict[len(password)])) + " seconds")
 
 
 PwCrack()

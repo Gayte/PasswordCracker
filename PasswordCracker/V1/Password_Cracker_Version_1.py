@@ -20,9 +20,9 @@ import time
 
 #Unhash to reset averages
 
-#times = {1:[],2:[],3:[],4:[],5:[]}
-#with open("avgs.pkl", "wb") as data:
-# pickle.dump(times, data)
+times = {1:[],2:[],3:[],4:[],5:[]}
+with open("avgs.pkl", "wb") as data:
+pickle.dump(times, data)
 
 
 
