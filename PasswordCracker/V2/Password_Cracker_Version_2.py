@@ -245,48 +245,48 @@ def PwCrack():
                                         found = True
                                         break
 
-    # Calculating and displaying time.
-    end_time = time.time()
-    print("Your time is: " + str(end_time - start_time) + " seconds")
-    time.sleep(1)
-    DoExit()
-   
-    #Saving times
+               # Calculating and displaying time.
+               end_time = time.time()
+               print("Your time is: " + str(end_time - start_time) + " seconds")
+               time.sleep(1)
+               DoExit()
 
-    with open("avgs.pkl", "rb") as olddata:
-        olddatadict = pickle.load(olddata)
-        x = olddatadict[len(password)]
-        x.append(endtime - starttime)
-        olddatadict[len(password)] = x
+               #Saving times
 
-
-
-    with open("avgs.pkl", "wb") as olddatatowrite:
-        pickle.dump(olddatadict, olddatatowrite)
+               with open("avgs.pkl", "rb") as olddata:
+                   olddatadict = pickle.load(olddata)
+                   x = olddatadict[len(password)]
+                   x.append(endtime - starttime)
+                   olddatadict[len(password)] = x
 
 
 
-    with open("avgs.pkl", "rb") as data:
-        avgdict = pickle.load(data)
+               with open("avgs.pkl", "wb") as olddatatowrite:
+                   pickle.dump(olddatadict, olddatatowrite)
 
 
 
-    def mean(lst):
-        total = 0
-        for i in lst:
-            total = total + i
-        average = total/len(lst)
-
-        return average
+               with open("avgs.pkl", "rb") as data:
+                   avgdict = pickle.load(data)
 
 
 
-    #Averaging and displaying average times.
+               def mean(lst):
+                   total = 0
+                   for i in lst:
+                       total = total + i
+                   average = total/len(lst)
 
-    if len(password) == 1:
-        print("Average time (1 letter): " + str(mean(avgdict[len(password)])) + " seconds")
-    else:
-        print("Average time  (" + str(len(password)) +  " letters): "  + str(mean(avgdict[len(password)])) + " seconds")
+                   return average
+
+
+
+               #Averaging and displaying average times.
+
+               if len(password) == 1:
+                   print("Average time (1 letter): " + str(mean(avgdict[len(password)])) + " seconds")
+               else:
+                   print("Average time  (" + str(len(password)) +  " letters): "  + str(mean(avgdict[len(password)])) + " seconds")
 
 
 PwCrack()
