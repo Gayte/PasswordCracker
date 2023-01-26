@@ -5,7 +5,7 @@ import random
 import time
 import sys
 
-# Unhash to reset averages
+#Resetting averages by unhashing
 
 times = {1: [], 2: [], 3: [], 4: [], 5: []}
 with open("avgs.pkl", "wb") as data:
