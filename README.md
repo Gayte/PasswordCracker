@@ -1,5 +1,5 @@
 # PasswordCracker 
-#Instructions:
+Instructions:
 1. Download latest version of Python
 2. Download latest release of PasswordCracker from github
 3. Install the following modules using pip:
@@ -8,4 +8,4 @@ pickle
 
 This project is for educational purposes only.
 
-#Created and managed by Aidan Kuamoo and Sage Fitzgerald
+Created and managed by Aidan Kuamoo and Sage Fitzgerald
