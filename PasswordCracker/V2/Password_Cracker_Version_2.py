@@ -1,18 +1,22 @@
 # Importing necessary files.
+
+import pickle
 import random
 import time
 import sys
-import pickle
+
+# Unhash to reset averages
+
+times = {1: [], 2: [], 3: [], 4: [], 5: []}
+with open("avgs.pkl", "wb") as data:
+    pickle.dump(times, data)
+
 # Resetting variables and list of letters.
+
 letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
            'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
-#Unhash to reset averages
-
-times = {1:[],2:[],3:[],4:[],5:[]}
-with open("avgs.pkl", "wb") as data:
-pickle.dump(times, data)
 
 # Defining exit function
 def DoExit():
@@ -29,149 +33,143 @@ def DoExit():
 def PwCrack():
     found = False
     valid = False
-    bad_character = False
+    badcharacter = False
     counter = 0
-    # Checking if the Password is the correct length.
+
+    # Checking is the password is the correct length.
+
     while not valid:
-        bad_character = False
-        Password = input("Please enter a Password: ")
-        if len(Password) > 6:
-            print("Sorry, that Password is too long. Please try again")
+        badcharacter = False
+        password = input("Please enter a password: ")
+        if len(password) > 8:
+            print("Sorry, that password is too long. Please try again")
             continue
 
         # Checking if any characters are actually entered.
-        if len(Password) == 0:
-            print("Sorry, the Password must be at least 1 character long. Please try again")
+
+        if len(password) == 0:
+            print("Sorry, the password must be at least 1 character long. Please try again")
             continue
 
-        # Checking that the Password only contains letters.
-        for q in Password.lower():
-            if q not in letters:
-                bad_character = True
+        # Checking that the password only contains letters.
+
+        for i in password.lower():
+            if i not in letters:
+                badcharacter = True
                 continue
-        if bad_character:
-            print("Sorry, the Password must only contain letters. please try again")
+        if badcharacter:
+            print("Sorry, the password must only contain letters. please try again")
             continue
+
+        # Checking that all letters in the password are lowercase.
+
+        # if not password.islower():
+        #  print("Sorry, the password must be all lowercase. Please try again")
+        #   continue
 
         # Starting timer
-        valid = True
-        start_time = time.time()
 
-    # Going through 1 letter Passwords.
-    for q in random.sample(letters, 52):
+        valid = True
+        starttime = time.time()
+
+    # Going through 1 letter passwords.
+
+    for i in random.sample(letters, 26):
         counter += 1
-        if q == Password:
-            print("Password cracked.:", q)
+        if i == password:
+            print("Password cracked:", i)
             print(counter, "tries")
             found = True
             break
 
-    # Going through 2 letter Passwords.
+    # Going through 2 letter passwords.
+
     if not found:
-        for q in random.sample(letters, 52):
-            for w in random.sample(letters, 52):
+        for i in random.sample(letters, 26):
+            for j in random.sample(letters, 26):
                 counter += 1
-                if q + w == Password:
-                    print("Password cracked.:", q + w)
+                if i + j == password:
+                    print("password cracked:", i + j)
                     print(counter, "tries")
                     found = True
                     break
 
-    # Going through 3 letter Passwords.
+    # Going through 3 letter passwords.
+
     if not found:
-        for q in random.sample(letters, 52):
-            for w in random.sample(letters, 52):
-                for e in random.sample(letters, 52):
+        for i in random.sample(letters, 26):
+            for j in random.sample(letters, 26):
+                for k in random.sample(letters, 26):
                     counter += 1
-                    if q + w + e == Password:
-                        print("Password cracked.:", q + w + e)
+                    if i + j + k == password:
+                        print("password cracked:", i + j + k)
                         print(counter, "tries")
                         found = True
                         break
 
-    # Going through 4 letter Passwords
+    # Going through 4 letter passwords
+
     if not found:
-        for q in random.sample(letters, 52):
-            for w in random.sample(letters, 52):
-                for e in random.sample(letters, 52):
-                    for r in random.sample(letters, 52):
+        for i in random.sample(letters, 26):
+            for j in random.sample(letters, 26):
+                for k in random.sample(letters, 26):
+                    for l in random.sample(letters, 26):
                         counter += 1
-                        if q + w + e + r == Password:
-                            print("Password cracked.:", q + w + e + r)
+                        if i + j + k + l == password:
+                            print("password cracked:", i + j + k + l)
                             print(counter, "tries")
                             found = True
                             break
 
-    # Going through 5 letter Passwords.
+    # Going through 5 letter passwords.
+
     if not found:
-        for q in random.sample(letters, 52):
-            for w in random.sample(letters, 52):
-                for e in random.sample(letters, 52):
-                    for r in random.sample(letters, 52):
-                        for t in random.sample(letters, 52):
+        for i in random.sample(letters, 26):
+            for j in random.sample(letters, 26):
+                for k in random.sample(letters, 26):
+                    for l in random.sample(letters, 26):
+                        for m in random.sample(letters, 26):
                             counter += 1
-                            if q + w + e + r + t == Password:
-                                print("Password cracked.:", q + w + e + r + t)
+                            if i + j + k + l + m == password:
+                                print("password cracked:", i + j + k + l + m)
                                 print(counter, "tries")
                                 found = True
                                 break
-        # Going through 6 letter Passwords.
-        if not found:
-            for q in random.sample(letters, 52):
-                for w in random.sample(letters, 52):
-                    for e in random.sample(letters, 52):
-                        for r in random.sample(letters, 52):
-                            for t in random.sample(letters, 52):
-                                for y in random.sample(letters, 52):
-                                    counter += 1
-                                    if q + w + e + r + t + y == Password:
-                                        print("Password cracked.:", q + w + e + r + t + y)
-                                        print(counter, "tries")
-                                        found = True
-                                        break
 
-               # Calculating and displaying time.
-               end_time = time.time()
-               print("Your time is: " + str(end_time - start_time) + " seconds")
-               time.sleep(1)
-               DoExit()
+    # Calculating and displaying time.
 
-               #Saving times
+    endtime = time.time()
+    print(f"Your time is: {str(endtime - starttime)} seconds")
 
-               with open("avgs.pkl", "rb") as olddata:
-                   olddatadict = pickle.load(olddata)
-                   x = olddatadict[len(password)]
-                   x.append(endtime - starttime)
-                   olddatadict[len(password)] = x
+    # Saving times
 
+    with open("avgs.pkl", "rb") as olddata:
+        olddatadict = pickle.load(olddata)
+        x = olddatadict[len(password)]
+        x.append(endtime - starttime)
+        olddatadict[len(password)] = x
 
+    with open("avgs.pkl", "wb") as olddatatowrite:
+        pickle.dump(olddatadict, olddatatowrite)
 
-               with open("avgs.pkl", "wb") as olddatatowrite:
-                   pickle.dump(olddatadict, olddatatowrite)
+    with open("avgs.pkl", "rb") as data:
+        avgdict = pickle.load(data)
 
+    def mean(lst):
+        total = 0
+        for i in lst:
+            total = total + i
+        return total / len(lst)
 
+    # Averaging and displaying average times.
 
-               with open("avgs.pkl", "rb") as data:
-                   avgdict = pickle.load(data)
-
-
-
-               def mean(lst):
-                   total = 0
-                   for i in lst:
-                       total = total + i
-                   average = total/len(lst)
-
-                   return average
-
-
-
-               #Averaging and displaying average times.
-
-               if len(password) == 1:
-                   print("Average time (1 letter): " + str(mean(avgdict[len(password)])) + " seconds")
-               else:
-                   print("Average time  (" + str(len(password)) +  " letters): "  + str(mean(avgdict[len(password)])) + " seconds")
+    if len(password) == 1:
+        print(f"Average time (1 letter): {str(mean(avgdict[len(password)]))} seconds")
+    else:
+        print(
+            f"Average time  ({len(password)} letters): {str(mean(avgdict[len(password)]))} seconds"
+        )
+        DoExit()
 
 
 PwCrack()
